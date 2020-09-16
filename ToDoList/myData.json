@@ -1,0 +1,95 @@
+{
+   "daylist": [
+      {
+         "day": "Sunday",
+         "todos": [
+            {
+               "id": 1,
+               "name" : "top"
+            },
+            {
+                "id": 2,
+                "name": "saat"
+            }
+         ]
+      },
+       {
+         "day": "Monday",
+         "todos": [
+            {
+               "id": 3,
+               "name" : "top"
+            },
+            {
+                "id": 4,
+                "name": "saat"
+            }
+         ]
+      },
+       {
+          "day": "Monday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "top"
+             },
+             {
+                 "id": 4,
+                 "name": "saat"
+             }
+          ]
+       },
+       {
+          "day": "Monday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "top"
+             },
+             {
+                 "id": 4,
+                 "name": "saat"
+             }
+          ]
+       },
+       {
+          "day": "Monday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "top"
+             },
+             {
+                 "id": 4,
+                 "name": "saat"
+             }
+          ]
+       },
+       {
+          "day": "Monday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "top"
+             },
+             {
+                 "id": 4,
+                 "name": "saat"
+             }
+          ]
+       },
+       {
+          "day": "Monday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "top"
+             },
+             {
+                 "id": 4,
+                 "name": "saat"
+             }
+          ]
+       }
+    ]
+}
