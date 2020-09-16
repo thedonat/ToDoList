@@ -1,5 +1,5 @@
 //
-//  CollectionViewCell.swift
+//  TableViewCell.swift
 //  ToDoList
 //
 //  Created by Burak Donat on 16.09.2020.
@@ -8,7 +8,6 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class TableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
 }

@@ -1,7 +1,7 @@
 {
    "daylist": [
       {
-         "day": "Sunday",
+         "day": "Monday",
          "todos": [
             {
                "id": 1,
@@ -14,24 +14,50 @@
          ]
       },
        {
-         "day": "Monday",
+         "day": "Tuesday",
          "todos": [
             {
                "id": 3,
-               "name" : "top"
+               "name" : "buraak"
             },
             {
                 "id": 4,
-                "name": "saat"
+                "name": "donat"
             }
          ]
       },
        {
-          "day": "Monday",
+          "day": "Wednesday",
           "todos": [
              {
                 "id": 3,
-                "name" : "top"
+                "name" : "furkan"
+             },
+             {
+                 "id": 4,
+                 "name": "kurnaz"
+             }
+          ]
+       },
+       {
+          "day": "Thursday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "cagri"
+             },
+             {
+                 "id": 4,
+                 "name": "ozturk"
+             }
+          ]
+       },
+       {
+          "day": "Friday",
+          "todos": [
+             {
+                "id": 3,
+                "name" : "seyman"
              },
              {
                  "id": 4,
@@ -40,54 +66,28 @@
           ]
        },
        {
-          "day": "Monday",
+          "day": "Saturday",
           "todos": [
              {
                 "id": 3,
-                "name" : "top"
+                "name" : "koz"
              },
              {
                  "id": 4,
-                 "name": "saat"
+                 "name": "maca"
              }
           ]
        },
        {
-          "day": "Monday",
+          "day": "Sunday",
           "todos": [
              {
                 "id": 3,
-                "name" : "top"
+                "name" : "das"
              },
              {
                  "id": 4,
-                 "name": "saat"
-             }
-          ]
-       },
-       {
-          "day": "Monday",
-          "todos": [
-             {
-                "id": 3,
-                "name" : "top"
-             },
-             {
-                 "id": 4,
-                 "name": "saat"
-             }
-          ]
-       },
-       {
-          "day": "Monday",
-          "todos": [
-             {
-                "id": 3,
-                "name" : "top"
-             },
-             {
-                 "id": 4,
-                 "name": "saat"
+                 "name": "das"
              }
           ]
        }
