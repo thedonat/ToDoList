@@ -4,12 +4,16 @@
          "day": "Monday",
          "todos": [
             {
-               "id": 1,
+               "id": 0,
                "name" : "top"
             },
             {
-                "id": 2,
+                "id": 1,
                 "name": "saat"
+            },
+            {
+                "id": 2,
+                "name": "oku"
             }
          ]
       },
@@ -30,11 +34,11 @@
           "day": "Wednesday",
           "todos": [
              {
-                "id": 3,
+                "id": 5,
                 "name" : "furkan"
              },
              {
-                 "id": 4,
+                 "id": 6,
                  "name": "kurnaz"
              }
           ]
@@ -43,11 +47,11 @@
           "day": "Thursday",
           "todos": [
              {
-                "id": 3,
+                "id": 7,
                 "name" : "cagri"
              },
              {
-                 "id": 4,
+                 "id": 8,
                  "name": "ozturk"
              }
           ]
@@ -56,11 +60,11 @@
           "day": "Friday",
           "todos": [
              {
-                "id": 3,
+                "id": 9,
                 "name" : "seyman"
              },
              {
-                 "id": 4,
+                 "id": 10,
                  "name": "saat"
              }
           ]
@@ -69,11 +73,11 @@
           "day": "Saturday",
           "todos": [
              {
-                "id": 3,
+                "id": 11,
                 "name" : "koz"
              },
              {
-                 "id": 4,
+                 "id": 12,
                  "name": "maca"
              }
           ]
@@ -82,11 +86,11 @@
           "day": "Sunday",
           "todos": [
              {
-                "id": 3,
+                "id": 13,
                 "name" : "das"
              },
              {
-                 "id": 4,
+                 "id": 14,
                  "name": "das"
              }
           ]

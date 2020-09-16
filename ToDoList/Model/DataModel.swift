@@ -12,13 +12,5 @@ struct DataModel: Codable {
     let daylist: [Daylist]
 }
 
-struct Daylist: Codable {
-    let day: String
-    let todos: [Todos]
-}
 
-struct Todos: Codable {
-    let id: Int
-    let name: String
-}
 

@@ -9,22 +9,27 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var dayView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var letterLabel: UILabel!
     
-    override var isSelected: Bool {
-        didSet {
-            if isSelected { // Selected cell
-                self.backgroundColor = UIColor.purple
-            } else { // Normal cell
-                self.backgroundColor = UIColor.white
-           }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        dayView.layer.cornerRadius = 10
+    }
+    
+    func setView(title: String?) {
+        titleLabel.text = title
+        if let char = title?.first {
+            letterLabel.text = String(char)
         }
     }
     
-    override func awakeFromNib() {
-        dayView.layer.cornerRadius = 10
+    func setSelectedCell(_ selected: Bool) {
+        if selected {
+             dayView.layer.borderWidth = 5
+         } else {
+             dayView.layer.borderWidth = 0
+        }
     }
 }

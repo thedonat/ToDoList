@@ -9,78 +9,107 @@
 import UIKit
 
 class TodoListViewController: UIViewController {
+    //MARK: Properites
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    var todoListViewModel: ToDoListViewModel = ToDoListViewModel()
+    
+    private var todoListViewModel: TodoListViewModel = TodoListViewModel()
+    private var selectedCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
+    //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
+    }
+    
+    //MARK: Helpers
+    private func getData() {
         todoListViewModel.delegate = self
-        todoListViewModel.load()
+        todoListViewModel.loadData()
     }
 }
 
+//MARK: UICollectionViewDataSource
 extension TodoListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        todoListViewModel.cellForRowAt()
-        return todoListViewModel.numberOfRows
+        return todoListViewModel.numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        let vm = todoListViewModel.cellForItem(at: indexPath.row)
-        cell.titleLabel.text = vm?.day
-        if let char = vm?.day.first {
-            cell.letterLabel.text = String(char)
+        let vm = todoListViewModel.getDayItem(at: indexPath.row)
+        cell.setView(title: vm?.day)
+        
+        if indexPath == selectedCellIndexPath {
+            cell.setSelectedCell(true)
+        } else {
+            cell.setSelectedCell(false)
+        }
+        
+        return cell
+    }
+}
+
+//MARK: UICollectionViewDelegate
+extension TodoListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCell = collectionView.cellForItem(at: selectedCellIndexPath) as? CollectionViewCell
+        selectedCell?.setSelectedCell(false)
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
+        cell?.setSelectedCell(true)
+        self.selectedCellIndexPath = indexPath
+        
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        todoListViewModel.selectDay(at: indexPath.row)
+    }
+}
+
+//MARK: UITableViewDataSource
+extension TodoListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todoListViewModel.numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
+        if let vm = todoListViewModel.getTodoList(at: indexPath.row) {
+            let isSelected = todoListViewModel.selecteds.contains(vm.id)
+            cell.setView(activity: vm.name,
+                         selected: isSelected)
         }
         return cell
     }
 }
 
-extension TodoListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        todoListViewModel.cellForRow(at: indexPath.row)
-        let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
-        cell?.isSelected = true
+//MARK: UITableViewDelegate
+extension TodoListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let id = todoListViewModel.getTodoList(at: indexPath.row)?.id {
+            todoListViewModel.selectedActivities(of: id)
         }
-        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-            
-        }
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "List of Items"
     }
 }
-    
 
-
-extension TodoListViewController: UICollectionViewDelegateFlowLayout {
-    private func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (self.view.frame.size.width - 12 * 3)/2 //some width
-        let height = width * 1.5 //ratio
-        return CGSize(width: width, height: height)
-    }
-}
-
+//MARK: TodoListViewModelProtocol
 extension TodoListViewController: TodoListViewModelProtocol {
     func didGetDayList() {
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        todoListViewModel.selectDay(at: 0)
+        todoListViewModel.getSelecteds()
     }
+    
     func didGetTodoList() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
 }
-
-
-extension TodoListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoListViewModel.numberOfRowsTable
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
-        cell.textLabel?.text = todoListViewModel.todoList[indexPath.row]?.name
-        return cell
-    }
-}
-
