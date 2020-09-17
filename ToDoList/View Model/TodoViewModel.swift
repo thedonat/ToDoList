@@ -15,7 +15,7 @@ struct ToDoViewModel {
         return days.day
     }
     
-    var name: [Todos] {
+    var activity: [Todos] {
         return days.todos
     }
     

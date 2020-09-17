@@ -9,6 +9,6 @@
 import Foundation
 
 struct Todos: Codable {
+    let activity: String
     let id: Int
-    let name: String
 }

@@ -9,10 +9,11 @@
 import UIKit
 
 class TodoListViewController: UIViewController {
+    
     //MARK: Properites
-
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     private var todoListViewModel: TodoListViewModel = TodoListViewModel()
     private var selectedCellIndexPath: IndexPath = IndexPath(row: 0, section: 0)
@@ -20,6 +21,7 @@ class TodoListViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView() //Deleting separators between empty rows
         getData()
     }
     
@@ -27,6 +29,10 @@ class TodoListViewController: UIViewController {
     private func getData() {
         todoListViewModel.delegate = self
         todoListViewModel.loadData()
+    }
+    private func handleError() {
+        errorLabel.isHidden = false
+        errorLabel.text = K.errorText
     }
 }
 
@@ -37,7 +43,7 @@ extension TodoListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.collectionIdentifier, for: indexPath) as! CollectionViewCell
         let vm = todoListViewModel.getDayItem(at: indexPath.row)
         cell.setView(title: vm?.day)
         
@@ -62,7 +68,7 @@ extension TodoListViewController: UICollectionViewDelegate {
         self.selectedCellIndexPath = indexPath
         
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        todoListViewModel.selectDay(at: indexPath.row)
+        todoListViewModel.getTodoCell(at: indexPath.row)
     }
 }
 
@@ -73,10 +79,10 @@ extension TodoListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.tableIdentifier, for: indexPath) as! TableViewCell
         if let vm = todoListViewModel.getTodoList(at: indexPath.row) {
             let isSelected = todoListViewModel.selecteds.contains(vm.id)
-            cell.setView(activity: vm.name,
+            cell.setView(activity: vm.activity,
                          selected: isSelected)
         }
         return cell
@@ -87,23 +93,27 @@ extension TodoListViewController: UITableViewDataSource {
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let id = todoListViewModel.getTodoList(at: indexPath.row)?.id {
-            todoListViewModel.selectedActivities(of: id)
+            todoListViewModel.handleSelection(with: id)
         }
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "List of Items"
+        return K.sectionHeader
     }
 }
 
 //MARK: TodoListViewModelProtocol
 extension TodoListViewController: TodoListViewModelProtocol {
+    func didFailWithError() {
+        handleError()
+    }
+    
     func didGetDayList() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        todoListViewModel.selectDay(at: 0)
+        todoListViewModel.getTodoCell(at: 0)
         todoListViewModel.getSelecteds()
     }
     

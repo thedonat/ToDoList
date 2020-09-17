@@ -5,15 +5,23 @@
          "todos": [
             {
                "id": 0,
-               "name" : "top"
+               "activity" : "Go for a walk"
             },
             {
                 "id": 1,
-                "name": "saat"
+                "activity": "Read a book"
             },
             {
                 "id": 2,
-                "name": "oku"
+                "activity": "Study lesson"
+            },
+            {
+                "id": 3,
+                "activity": "Take a fresh air"
+            },
+            {
+                "id": 4,
+                "activity": "Study programming"
             }
          ]
       },
@@ -21,12 +29,20 @@
          "day": "Tuesday",
          "todos": [
             {
-               "id": 3,
-               "name" : "buraak"
+               "id": 5,
+               "activity" : "Hang out with friends"
             },
             {
-                "id": 4,
-                "name": "donat"
+                "id": 6,
+                "activity": "Study programming"
+            },
+            {
+               "id": 7,
+               "activity" : "Play video games"
+            },
+            {
+                "id": 8,
+                "activity": "Go for a coffee"
             }
          ]
       },
@@ -34,12 +50,20 @@
           "day": "Wednesday",
           "todos": [
              {
-                "id": 5,
-                "name" : "furkan"
+                "id": 9,
+                "activity" : "Go to gym"
              },
              {
-                 "id": 6,
-                 "name": "kurnaz"
+                 "id": 10,
+                 "activity": "Ride a bike"
+             },
+             {
+                "id": 11,
+                "activity" : "Study programming"
+             },
+             {
+                 "id": 12,
+                 "activity": "Go for dinner"
              }
           ]
        },
@@ -47,12 +71,20 @@
           "day": "Thursday",
           "todos": [
              {
-                "id": 7,
-                "name" : "cagri"
+                "id": 13,
+                "activity" : "Go to the beach"
              },
              {
-                 "id": 8,
-                 "name": "ozturk"
+                 "id": 14,
+                 "activity": "Go to the match"
+             },
+             {
+                "id": 15,
+                "activity" : "Play basketball"
+             },
+             {
+                 "id": 16,
+                 "activity": "Study programming"
              }
           ]
        },
@@ -60,12 +92,20 @@
           "day": "Friday",
           "todos": [
              {
-                "id": 9,
-                "name" : "seyman"
+                "id": 17,
+                "activity" : "Read a book"
              },
              {
-                 "id": 10,
-                 "name": "saat"
+                 "id": 18,
+                 "activity": "Go to the mall"
+             },
+             {
+                "id": 19,
+                "activity" : "Do homeworks"
+             },
+             {
+                 "id": 20,
+                 "activity": "Study programming"
              }
           ]
        },
@@ -73,12 +113,20 @@
           "day": "Saturday",
           "todos": [
              {
-                "id": 11,
-                "name" : "koz"
+                "id": 21,
+                "activity" : "Play basketball"
              },
              {
-                 "id": 12,
-                 "name": "maca"
+                 "id": 22,
+                 "activity": "Study programming"
+             },
+             {
+                "id": 23,
+                "activity" : "Do homeworks"
+             },
+             {
+                 "id": 24,
+                 "activity": "Read a book"
              }
           ]
        },
@@ -86,12 +134,20 @@
           "day": "Sunday",
           "todos": [
              {
-                "id": 13,
-                "name" : "das"
+                "id": 25,
+                "activity" : "Go for breakfast"
              },
              {
-                 "id": 14,
-                 "name": "das"
+                 "id": 26,
+                 "activity": "Ride a bike"
+             },
+             {
+                "id": 27,
+                "activity" : "Go for fishing"
+             },
+             {
+                 "id": 28,
+                 "activity": "Read a book"
              }
           ]
        }

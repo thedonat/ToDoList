@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dayView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var letterLabel: UILabel!
     
     override func awakeFromNib() {
@@ -19,7 +19,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     func setView(title: String?) {
-        titleLabel.text = title
+        dayLabel.text = title
         if let char = title?.first {
             letterLabel.text = String(char)
         }

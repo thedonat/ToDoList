@@ -11,6 +11,7 @@ import Foundation
 protocol TodoListViewModelProtocol: class {
     func didGetDayList()
     func didGetTodoList()
+    func didFailWithError()
 }
 
 class TodoListViewModel {
@@ -41,12 +42,12 @@ class TodoListViewModel {
                 self.daylist = decodedData.daylist
                 self.delegate?.didGetDayList()
             } catch  {
-                print("error")
+                self.delegate?.didFailWithError()
             }
         }
     }
     
-    func selectDay(at index: Int) { //return tableview cells at index
+    func getTodoCell(at index: Int) { //return tableview cells at index
         if let todos = daylist[index]?.todos {
             self.todoList = todos
             self.delegate?.didGetTodoList()
@@ -64,24 +65,22 @@ class TodoListViewModel {
         return nil
     }
     
-    func selectedActivities(of id: Int) { // save/remove selected activities to/from the selectedIDs
-        if let selecteds = defaults.value(forKey: "FAV") as? [Int] {
+    func handleSelection(with id: Int) { // save/remove selected activities to/from the selectedIDs
+        if let selecteds = defaults.value(forKey: K.key) as? [Int] {
             self.selectedIDs = selecteds
         }
         
         if !selectedIDs.contains(id) {
             selectedIDs.append(id)
-            defaults.set(selectedIDs, forKey: "FAV")
-            print(selectedIDs)
+            defaults.set(selectedIDs, forKey: K.key)
         } else {
             selectedIDs = selectedIDs.filter { $0 != id }
-            defaults.set(selectedIDs, forKey: "FAV")
-            print(selectedIDs)
+            defaults.set(selectedIDs, forKey: K.key)
         }
     }
     
     func getSelecteds() {
-        if let selecteds = defaults.value(forKey: "FAV") as? [Int] {
+        if let selecteds = defaults.value(forKey: K.key) as? [Int] {
             self.selectedIDs = selecteds
         }
     }
